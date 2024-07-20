@@ -54,7 +54,47 @@ And it will return you a url valid for 1 hour with the generated content, in thi
 Example:
 ![generated_cat](images/dalle-generated-cat.png)
 ##### Embeddings
-TBD
+
+OpenAI’s text embeddings measure the relatedness of text strings. Embeddings are commonly used for:
+- Search (where results are ranked by relevance to a query string)
+- Clustering (where text strings are grouped by similarity)
+- Recommendations (where items with related text strings are recommended)
+- Anomaly detection (where outliers with little relatedness are identified)
+- Diversity measurement (where similarity distributions are analyzed)
+- Classification (where text strings are classified by their most similar label)
+- An embedding is a vector (list) of floating point numbers. The distance between two vectors measures their relatedness. Small distances suggest high relatedness and large distances suggest low relatedness.
+
+To note OpenAI has new embeddings models: `text-embedding-3-small` and `text-embedding-3-large` that are most performant embedding models with lower costs, higher multilingual performance, and new parameters to control the overall size.
+
+To generate 50 embeddings in a local file from a sample input file of Fine Reviews, run
+```commandline
+ python openai-embedding3small-generation.py
+```
+
+An example of embedding model is:
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "object": "embedding",
+      "index": 0,
+      "embedding": [
+        -0.006929283495992422,
+        -0.005336422007530928,
+        ... (omitted for spacing)
+        -4.547132266452536e-05,
+        -0.024047505110502243
+      ],
+    }
+  ],
+  "model": "text-embedding-3-small",
+  "usage": {
+    "prompt_tokens": 5,
+    "total_tokens": 5
+  }
+}
+```
 
 
 #### Resources
