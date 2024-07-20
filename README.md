@@ -132,10 +132,33 @@ Response: We're sorry, but your input has been flagged as inappropriate. Please 
 
 ```
 
+#### Fine tuning
+TBD
 
-#### Resources
+#### Text to Speech
+TBD
+
+#### Speech to Text
+TBD
+
+#### Batch API
+TBD
+
+#### Assistants
+TBD
+
+#### ChatGPT Actions
+TBD
+
+### Resources
  - [open ai quickstart](https://platform.openai.com/docs/quickstart)
  - [chat completion api reference](https://platform.openai.com/docs/api-reference/chat)
  - [embeddings quickstart](https://platform.openai.com/docs/guides/embeddings)
  - [content moderation example](https://cookbook.openai.com/examples/how_to_use_moderation)
  - [OpenAI cookbooks](https://cookbook.openai.com/)
+ - [Fine tuning quickstart](https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset)
+ - [Text to Speech quickstart](https://platform.openai.com/docs/guides/text-to-speech)
+ - [Speech to Text](https://platform.openai.com/docs/guides/speech-to-text)
+ - [Batch API](https://platform.openai.com/docs/guides/batch)
+ - [Assistants quickstart](https://platform.openai.com/docs/assistants/overview)
+ - [ChatGPT Actions quickstart](https://platform.openai.com/docs/actions/introduction)
