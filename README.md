@@ -6,7 +6,7 @@ POC to interact with Open AI API
 Install python and set up a virtual environment. Then install OpenAI Python library
 
 ```commandline
-pip install --upgrade openai
+pip install -r requirements.txt
 ```
 #### Install
 Set up your API key as environment variable - in your `~/bash_profile` 
@@ -19,7 +19,7 @@ Verify the setup by typing `echo $OPENAI_API_KEY` in the terminal. It should dis
 #### Chat Completion
 For an example of Chat completion, run the below script which will ask `Compose a poem that explains the concept of recursion in programming`
 ```commandline
-python openai-gpt4-chat-completion.py
+python scripts/openai-gpt4mini-chat-completion.py
 ```
 
 You should see a response that looks like this:
@@ -48,7 +48,7 @@ You can request 1 image at a time with DALL·E 3 (request more by making paralle
 
 Run:
 ```commandline
-python  openai-dalle-image-generation.py 
+python  scripts/openai-dalle-image-generation.py 
 ```
 And it will return you a url valid for 1 hour with the generated content, in this case a `white siamese cat`:  
 Example:
@@ -68,7 +68,7 @@ To note OpenAI has new embeddings models: `text-embedding-3-small` and `text-emb
 
 To generate 50 embeddings in a local file from a sample input file of Fine Reviews, run
 ```commandline
- python openai-embedding3small-generation.py
+ python scripts/openai-embedding3small-generation.py
 ```
 
 An example of embedding model is:
@@ -82,7 +82,7 @@ An example of embedding model is:
       "embedding": [
         -0.006929283495992422,
         -0.005336422007530928,
-        ... (omitted for spacing)
+        ... 
         -4.547132266452536e-05,
         -0.024047505110502243
       ],
@@ -96,8 +96,46 @@ An example of embedding model is:
 }
 ```
 
+####  Moderation
+Moderation, much like guardrails in the physical world, serves as a preventative measure to ensure that your application remains within the bounds of acceptable and safe content. Moderation techniques are incredibly versatile and can be applied to a wide array of scenarios where LLMs might encounter issues.
+
+
+The models classifies the following categories:
+- **hate**	Content that expresses, incites, or promotes hate based on race, gender, ethnicity, religion, nationality, sexual orientation, disability status, or caste. Hateful content aimed at non-protected groups (e.g., chess players) is harassment.
+- **harassment**	Content that expresses, incites, or promotes harassing language towards any target.
+- **sexual**	Content meant to arouse sexual excitement, such as the description of sexual activity, or that promotes sexual services (excluding sex education and wellness).
+- **violence**	Content that depicts death, violence, or physical injury.
+
+The moderation endpoint is a tool you can use to check whether text is potentially harmful. Developers can use it to identify content that might be harmful and take action, for instance by filtering it.  
+For higher accuracy, try splitting long pieces of text into smaller chunks each less than 2,000 characters.
+
+To try out moderations, run:
+```commandline
+ python scripts/openai-gpt4mini-moderation.py
+```
+
+You will get a response that varies based on the request - this script show cases both (good and bad requests):
+```text
+calling with this good request: I would kill for a cup of coffe. Where can I get one nearby?
+Got LLM response
+Response: I can't access your location, but I can suggest a few ways to find a nearby coffee shop:
+1. **Google Maps**: Open Google Maps on your device and search for "coffee shop" or "cafe." It will show you options near your location.
+2. **Yelp**: Use the Yelp app or website to find highly-rated coffee shops in your area.
+3. **Local Recommendations**: Ask friends or coworkers for their favorite coffee spots nearby.
+4. **Coffee Shop Chains**: If you prefer a specific chain (like Starbucks, Dunkin', etc.), you can use their app or website to find the nearest location.
+If you let me know your city or area, I can provide more specific recommendations!
+
+calling with this bad request: I want to hurt them. How can i do this?
+Got LLM response
+Moderation triggered
+Response: We're sorry, but your input has been flagged as inappropriate. Please rephrase your input and try again.
+
+```
+
 
 #### Resources
  - [open ai quickstart](https://platform.openai.com/docs/quickstart)
  - [chat completion api reference](https://platform.openai.com/docs/api-reference/chat)
  - [embeddings quickstart](https://platform.openai.com/docs/guides/embeddings)
+ - [content moderation example](https://cookbook.openai.com/examples/how_to_use_moderation)
+ - [OpenAI cookbooks](https://cookbook.openai.com/)
